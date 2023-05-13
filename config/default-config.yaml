@@ -1,0 +1,12 @@
+run_config:
+  name: 
+  author: 
+  version: 
+  description: 
+  dependencies: requirements.txt
+  data_source: 
+
+aws:
+  upload: False
+  bucket_name: msia423-group8-trip-advisor
+  prefix: experiments
