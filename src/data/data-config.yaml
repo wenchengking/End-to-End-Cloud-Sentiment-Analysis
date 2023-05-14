@@ -1,0 +1,7 @@
+s3: 
+  user_profile: default # update when needed
+  bucket_name:  msia423-group8-trip-advisor
+  decode: 'utf-8'
+  input_prefix: raw
+  output_prefix: processed
+  archive_prefix: 
