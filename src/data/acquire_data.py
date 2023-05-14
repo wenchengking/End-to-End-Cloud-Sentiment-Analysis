@@ -31,20 +31,20 @@ def read_from_s3(config: dict) -> pd.DataFrame:
         # has file(s) in the folder
         if len(raw_data) >1:
             # if we have more than one file in the folder
-            logger.warning("The folder contains only one file.")
+            logger.warning("The folder contains more than one file.")
             # use the latest file
             input_file = max(raw_data, key=lambda x: x.last_modified)
             input_file_key = input_file.key
-            logging.info("Using latest file %s for processing", input_file_key)
+            logger.info("Using latest file %s for processing", input_file_key)
         else: 
             input_file_key = raw_data[0].key
-            logging.info("Using file %s for processing", input_file_key)
+            logger.info("Using file %s for processing", input_file_key)
     # read dataframe from csv file
     obj = bucket.Object(input_file_key)
     data = obj.get()['Body'].read().decode(config['decode']) # we have an emoji
     df = pd.read_csv(io.StringIO(data))
     logger.info("file processed successfully")
-    logging.debug(df.shape, df.columns, df.head())
+    logger.debug('file size %s', df.shape)
     return df
 
 if __name__ == "__main__":

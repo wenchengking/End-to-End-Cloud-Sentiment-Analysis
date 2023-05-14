@@ -1,7 +1,14 @@
 s3: 
-  user_profile: default # update when needed
+  user_profile: personal-sso-admin
   bucket_name:  msia423-group8-trip-advisor
   decode: 'utf-8'
   input_prefix: raw
   output_prefix: processed
-  archive_prefix: 
+  output_file_name: cleaned_data.csv # Note: create the file in the same directory
+
+data_processing: 
+  satisfied_threshold: 3  # if rating >= satisfied_threshold 1 else 0
+  downsample_ratio: 0.1
+  random_state: 42
+  stratify_column: Rating
+  
