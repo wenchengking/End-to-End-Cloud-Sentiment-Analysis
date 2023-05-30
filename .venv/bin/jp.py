@@ -1,4 +1,4 @@
-#!/home/zle2435/Cloud_Engineering_DS/.venv/bin/python
+#!/root/Cloud_Engineering_DS/.venv/bin/python
 
 import sys
 import json

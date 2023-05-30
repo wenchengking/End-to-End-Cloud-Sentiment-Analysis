@@ -1,0 +1,13 @@
+s3: 
+  user_profile: personal-sso-admin
+  decode: 'utf-8'
+  input_bucket: msia423-group8-raw
+  output_bucket: msia423-group8-trip-advisor-processed
+  output_file_name: cleaned_data.csv # Note: create the file in the same directory
+
+data_processing: 
+  satisfied_threshold: 3  # if rating >= satisfied_threshold 1 else 0
+  downsample_ratio: 0.05 # we have only two classes, for each class, we will sample 5% of the data, so combined, that's 10%
+  random_state: 42
+  stratify_column: Rating
+  
