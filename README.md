@@ -1,9 +1,3 @@
-# Team Members
-- Hong, Brian
-- Li, Zhengyuan (Donald)
-- Xu, Yiyue (Jessie)
-- Zhang, Wencheng (Bill)
-
 # Hotel Review Sentiment Analysis
 **Reviews are vital for the hotel industry**, influencing potential customers and shaping a hotel's reputation. However, manually analyzing reviews is time-consuming due to the increasing volume of online feedback. To streamline this process, sentiment analysis and NLP techniques can automate the analysis of reviews, allowing businesses to efficiently extract insights and prioritize customer needs, leading to improved guest experiences.
 
@@ -194,3 +188,9 @@ python __init__.py
 ```
 
 The configuration files are in the `config` folder, where you will also find the logger config file. Data visualzation can be found at `notebook/Cloud_EDA.ipynb`. There are also sample data under the `data/raw` directory and sample model artifacts under `models` directory. Note that the docker image only exists for data preparation and model training and are only intended for Linux.
+
+# Team Members
+- Hong, Brian
+- Li, Zhengyuan (Donald)
+- Xu, Yiyue (Jessie)
+- Zhang, Wencheng (Bill)
