@@ -1,3 +1,9 @@
+# Team Members
+- Hong, Brian
+- Li, Zhengyuan (Donald)
+- Xu, Yiyue (Jessie)
+- Zhang, Wencheng (Bill)
+
 # Hotel Review Sentiment Analysis
 **Reviews are vital for the hotel industry**, influencing potential customers and shaping a hotel's reputation. However, manually analyzing reviews is time-consuming due to the increasing volume of online feedback. To streamline this process, sentiment analysis and NLP techniques can automate the analysis of reviews, allowing businesses to efficiently extract insights and prioritize customer needs, leading to improved guest experiences.
 
