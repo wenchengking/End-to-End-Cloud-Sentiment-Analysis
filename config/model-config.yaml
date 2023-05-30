@@ -1,0 +1,51 @@
+run_config:
+  data_source: S3
+
+data_source:
+  user_profile: personal-sso-admin
+  bucket_name: msia423-group8-processed
+  input_prefix: cleaned
+  decode: utf-8
+
+grid_search:
+  train_test_split:
+    test_size: 0.2
+    random_state: 42
+    target_col: Rating
+    feature_col: Review
+  cv: 3
+  logistic_model: LogisticRegression
+  logistic_param_grid:
+    C: [0.2, 0.4, 0.8, 1.0, 1.2, 1.6]
+    penalty: [l1, l2]
+  naive_bayes_model: MultinomialNB
+  naive_bayes_param_grid:
+    alpha: [0.1, 0.5, 1.0]
+    fit_prior: [True, False]
+
+score_model:
+  output:
+    prob_output: prob_predic_output
+    bin_output: bin_predic_output
+  get_target:
+    target: Rating
+
+evaluate_performance:
+  features:
+    target: Rating
+    predict_prob: prob_predic_output
+    predict_bin: bin_predic_output
+  metrics: [auc, confusion, accuracy, classification_report]
+
+train_model:
+  method: LogisticRegression
+  target_col: Rating
+  feature_col: Review
+
+aws_upload:
+  upload: True
+  user_profile: personal-sso-admin
+  bucket_name: msia423-group8-artifact
+  prefix: pipeline_output
+  region: us-east-2
+
