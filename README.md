@@ -1,7 +1,7 @@
 # Hotel Review Sentiment Analysis
 **Reviews are vital for the hotel industry**, influencing potential customers and shaping a hotel's reputation. However, manually analyzing reviews is time-consuming due to the increasing volume of online feedback. To streamline this process, sentiment analysis and NLP techniques can automate the analysis of reviews, allowing businesses to efficiently extract insights and prioritize customer needs, leading to improved guest experiences.
 
-In this project, we explore the possiblity of end-to-end machine learning solutions on AWS Cloud. Our goal is to build a light-weight demo that can be tuned and run with zero-to-none cloud overhead. For demonstration, we use [Trip Advisor Hotel Reviews](https://www.kaggle.com/datasets/andrewmvd/trip-advisor-hotel-reviews). 
+In this project, we explore the possiblity of end-to-end machine learning solutions on AWS Cloud. Our goal is to build a light-weight pipeline that can be tuned and run with zero-to-none cloud overhead. For demonstration, we use [Trip Advisor Hotel Reviews](https://www.kaggle.com/datasets/andrewmvd/trip-advisor-hotel-reviews). 
 
 
 ## AWS Setup
