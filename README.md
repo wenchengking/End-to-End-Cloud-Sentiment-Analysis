@@ -37,8 +37,9 @@ We then started a virutal environment to code out the related modules - that ens
 python -m venv .venv
 source .venv/bin/activate
 ```
-Beware of where you save the files. From the AWS Lambda FAQ
+From the AWS Lambda FAQ
 > Each Lambda function receives 500MB of non-persistent disk space in its own /tmp directory.
+For this project, we are saving all output files to `/tmp` directory.
 
 When we are done, we saved the packages installed in the virtual environment using `pip freeze > requirements.txt`. As default, AWS Lambda requires a function handler. A function handler can be any name; however, the default name in the Lambda console is `{lambda_function}.{lambda_handler}`. As a convention, for all our code, we use `main.lambda_handler` as the entrypoint. We then build the docker image, tag it and push it to a ECR private repo: 
 ```shell
@@ -53,7 +54,7 @@ docker tag $image_name:latest $aws_account_id.dkr.ecr.$region.amazonaws.com/$ima
 docker push $aws_account_id.dkr.ecr.$region.amazonaws.com/$image_name:$tag
 ```
 
-The image can now be found at the repositry - for security, we are using a container image from a *private* repositories on ECR. Now, we head back tot the Lambda console to create the Lambda function, with the EventBridge as a trigger.
+The image can now be found at the repositry - for security, we are using a container image from a *private* repositories on ECR. Now, we head back to the Lambda console to create the Lambda function, with the EventBridge as a trigger.
 ![Labmda](/img/Lambda.png)
 
 We can also generate a test - the following test is a boiler plate code with the bucket name changed to minic a `ObjectCreated` event on our raw data bucket: 
@@ -99,7 +100,7 @@ We can also generate a test - the following test is a boiler plate code with the
 ```
 Another remark: when building the modules, we converted the config file into a dictionary in `main.py` allowing environemnt variable overrride, e.g.,: 
 `config['data_processing']['satisfied_threshold'] = os.getenv('SATISFIED_THRESHOLD', 3)`
-This allows us to update environment variables directly in the Lambda console without touching/pushing the underlying image: 
+This allows us to update environment variables directly in the Lambda console without touching/re-pushing the underlying image: 
 ![Lambda-env](img/Lambda-env.png)
 
 
@@ -112,7 +113,7 @@ Now that we have the processed data, we conduct the following steps:
 5. **Evaluate Performance**: we then evalute the models (currently listed in the config file are AUC, confusion matrix, accuracy and classification report)
 6. **Model Deployment**: finally, we retrain the best model on the full dataset and save the result (both vector representations and TMO) to the s3 bucket, which would be consumed by our front-end
 
-Most of the AWS configurations for model building and training follows those of data collection. Here, we are adding the feature that allows users to see different versions of models (e.g., below you would see **default vs. tiny_model**). This can be easily triggered by updating `$AW_PREFIX`. The idea is to allow end-user to compare models trained on different data. As of now, we are only looking at the hotel industry, but this can be easily modified to meet the needs of any retail/service industry. When the user upload the raw data, the pipeline runs end-to-end automatically.
+Most of the AWS configurations for model building and training follows those of data collection. Here, we are adding the feature that allows users to see different versions of the models (e.g., below you would see **default vs. tiny_model**). This can be easily triggered by updating `$AW_PREFIX`. The idea is to allow end-user to compare models trained on different data. As of now, we are only looking at the hotel industry, but this can be easily modified to meet the needs of any retail/service industry. When the user upload the raw data, the pipeline runs end-to-end automatically.
 
 ![s3-artifact](/img/s3-artifact.png)
 
